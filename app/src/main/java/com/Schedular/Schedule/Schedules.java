@@ -163,6 +163,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Sets current device Scale factor based on screen dpi
      */
+    // TODO -> IGNORE
     public void setDeviceDPIScaleFactor(float dpiSIndicator) {
         mRenderer.setDPIScaleIndicator(dpiSIndicator);
 
@@ -187,6 +188,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Cleans the lastTargetTrackerId variable
      */
+    // TODO -> IGNORE
     public void cleanTargetTrackedId() {
         synchronized (lastTargetId) {
             lastTargetId = "";
@@ -195,6 +197,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
 
     // Called when the activity first starts or needs to be recreated after
     // resuming the application or a configuration change.
+    // TODO -> IGNORE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(LOGTAG, "onCreate");
@@ -238,6 +241,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     // Called when the activity will start interacting with the user.
+    // TODO -> IGNORE
     @Override
     protected void onResume() {
         Log.d(LOGTAG, "onResume");
@@ -253,6 +257,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     // Callback for configuration changes the activity handles itself
+    // TODO -> IGNORE
     @Override
     public void onConfigurationChanged(Configuration config) {
         Log.d(LOGTAG, "onConfigurationChanged");
@@ -262,6 +267,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     // Called when the system is about to start resuming a previous activity.
+    // TODO -> IGNORE
     @Override
     protected void onPause() {
         Log.d(LOGTAG, "onPause");
@@ -291,6 +297,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     // The final call you receive before your activity is destroyed.
+    // TODO -> IGNORE
     @Override
     protected void onDestroy() {
         Log.d(LOGTAG, "onDestroy");
@@ -359,6 +366,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     // Initializes AR application components.
+    // TODO -> IGNORE
     private void initApplicationAR() {
         // Create OpenGL ES view:
         int depthSize = 16;
@@ -383,6 +391,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Sets the Status Bar Text in a UI thread
      */
+    // TODO -> IGNORE
     public void setStatusBarText(String statusText) {
         mStatusBarText = statusText;
         statusBarHandler.sendEmptyMessage(SHOW_STATUS_BAR);
@@ -391,6 +400,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Hides the Status bar 2D Overlay in a UI thread
      */
+    // TODO -> IGNORE
     public void hideStatusBar() {
         if (mStatusBar.getVisibility() == View.VISIBLE) {
             statusBarHandler.sendEmptyMessage(HIDE_STATUS_BAR);
@@ -400,6 +410,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Shows the Status Bar 2D Overlay in a UI thread
      */
+    // TODO -> IGNORE
     public void showStatusBar() {
         if (mStatusBar.getVisibility() == View.GONE) {
             statusBarHandler.sendEmptyMessage(SHOW_STATUS_BAR);
@@ -413,8 +424,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
         // Checks that we have a valid book data
         if (mScheduleData != null) {
             // Starts an Intent to open the book URL
-            Intent viewIntent = new Intent("android.intent.action.VIEW",
-                    Uri.parse(mScheduleData.getBookUrl()));
+            Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse(mScheduleData.getBookUrl()));
 
             startActivity(viewIntent);
         }
@@ -423,6 +433,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Returns the error message for each error code
      */
+    // TODO -> IGNORE
     private String getStatusDescString(int code) {
         if (code == UPDATE_ERROR_AUTHORIZATION_FAILED)
             return getString(R.string.UPDATE_ERROR_AUTHORIZATION_FAILED_DESC);
@@ -448,6 +459,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Returns the error message for each error code
      */
+    // TODO -> IGNORE
     private String getStatusTitleString(int code) {
         if (code == UPDATE_ERROR_AUTHORIZATION_FAILED)
             return getString(R.string.UPDATE_ERROR_AUTHORIZATION_FAILED_TITLE);
@@ -471,6 +483,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     // Shows error messages as System dialogs
+    // TODO -> IGNORE
     public void showErrorMessage(int errorCode, double errorTime, boolean finishActivityOnError) {
         if (errorTime < (mLastErrorTime + 5.0) || errorCode == mlastErrorCode)
             return;
@@ -567,6 +580,12 @@ public class Schedules extends Activity implements SampleApplicationControl {
      * Updates a ScheduleOverlayView with the Schedule data specified in parameters
      */
     private void updateProductView(ScheduleOverlayView productView, Schedule schedule) {
+        /* Update our Schedule */
+        productView.setCourse( schedule.getCourse() );
+        productView.setSchedule( schedule.getSchedule() );
+        productView.setProfessor( schedule.getProfessor() );
+
+        // TODO -> IGNORE
         productView.setBookTitle(schedule.getTitle());
         productView.setBookPrice(schedule.getPriceList());
         productView.setYourPrice(schedule.getPriceYour());
@@ -628,6 +647,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Displays the 2D Book Overlay
      */
+    // TODO -> IGNORE
     public void show2DOverlay() {
         // Sends the Message to the Handler in the UI thread
         overlay2DHandler.sendEmptyMessage(SHOW_2D_OVERLAY);
@@ -636,11 +656,13 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Hides the 2D Book Overlay
      */
+    // TODO -> IGNORE
     public void hide2DOverlay() {
         // Sends the Message to the Handler in the UI thread
         overlay2DHandler.sendEmptyMessage(HIDE_2D_OVERLAY);
     }
 
+    // TODO -> IGNORE
     public boolean onTouchEvent(MotionEvent event) {
         // Process the Gestures
         return mGestureDetector.onTouchEvent(event);
@@ -677,11 +699,13 @@ public class Schedules extends Activity implements SampleApplicationControl {
         return true;
     }
 
+    // TODO -> IGNORE
     @Override
     public boolean doUnloadTrackersData() {
         return true;
     }
 
+    // TODO -> IGNORE
     @Override
     public void onInitARDone(SampleApplicationException exception) {
 
@@ -716,6 +740,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
         }
     }
 
+    // TODO -> IGNORE
     @Override
     public void onVuforiaResumed() {
         if (mGlView != null) {
@@ -724,6 +749,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
         }
     }
 
+    // TODO -> IGNORE
     @Override
     public void onVuforiaStarted() {
         mRenderer.updateRenderingPrimitives();
@@ -739,6 +765,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
         showProgressIndicator(false);
     }
 
+    // TODO -> IGNORE
     public void showProgressIndicator(boolean show) {
         if (loadingDialogHandler != null) {
             if (show) {
@@ -750,6 +777,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     // Shows initialization error messages as System dialogs
+    // TODO -> IGNORE
     public void showInitializationErrorMessage(String message) {
         final String errorMessage = message;
         runOnUiThread(new Runnable() {
@@ -775,6 +803,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
             }
         });
     }
+
 
     @Override
     public void onVuforiaUpdate(State state) {
@@ -933,6 +962,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Crates a Handler to Show/Hide the status bar overlay from an UI Thread
      */
+    // TODO -> IGNORE
     static class StatusBarHandler extends Handler {
         private final WeakReference<Schedules> mSchedules;
 
@@ -960,6 +990,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Creates a handler to Show/Hide the UI Overlay from an UI thread
      */
+    // TODO -> IGNORE
     static class Overlay2dHandler extends Handler {
         private final WeakReference<Schedules> mSchedules;
 

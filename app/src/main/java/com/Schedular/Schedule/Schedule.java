@@ -15,12 +15,37 @@ public class Schedule
     private Bitmap thumb;
     private String bookUrl;
 
+    private String course;
+    private String schedule;
+    private String professor;
 
-    public Schedule ()
-    {
+    public Schedule () { }
 
+    public void setCourse(String course) {
+        this.course = course;
     }
 
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
+    public void setProfessor(String professor) {
+        this.professor = professor;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public String getProfessor() {
+        return professor;
+    }
+
+    // TODO -> IGNORE
 
     public String getTitle()
     {

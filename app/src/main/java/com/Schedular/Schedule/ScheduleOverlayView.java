@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.Schedular.R;
 
+import org.w3c.dom.Text;
+
 
 public class ScheduleOverlayView extends RelativeLayout
 {
@@ -44,6 +46,26 @@ public class ScheduleOverlayView extends RelativeLayout
 //        inflater.inflate(R.layout.bitmap_layout, this, true);
         inflater.inflate(R.layout.schedule_bitmap_layout, this, true);
     }
+
+    // TODO -> Our Custom View Methods for Uppdating Information
+    public void setCourse ( String course )
+    {
+        TextView courseTextView = (TextView) findViewById (R.id.courseTextView);
+        courseTextView.setText (course);
+    }
+
+    public void setSchedule( String schedule )
+    {
+        TextView scheduleTextView = (TextView) findViewById (R.id.scheduleTextView);
+        scheduleTextView.setText (schedule);
+    }
+
+    public void setProfessor ( String professor )
+    {
+        TextView professorTextView = (TextView) findViewById (R.id.professorTextView);
+        professorTextView.setText (professor);
+    }
+
 
 
     // Sets Book title in View
