@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SchedulAR</string>
+    <string name="app_description">Augmented Reality Schedules</string>
+
+    <string name="button_start">Start</string>
+    <string name="activities_list_title_string">Schedules</string>
+    <string name="activities_list_empty">No activities</string>
+
+    <string name="button_OK">OK</string>
+
+    <string name="string_usd">USD</string>
+    <string name="string_openParentheses">(</string>
+    <string name="string_closeParentheses">)</string>
+    <string name="string_ratings">ratings</string>
+    <string name="status_bar_scanning">Scanning</string>
+    <string name="content_desc_vuforia_logo">Vuforia Logo</string>
+    <string name="content_desc_vuforia_background">Vuforia Background</string>
+    <string name="book_data_your_price">Your Price</string>
+    <string name="content_description_cover">Cover</string>
+    <string name="content_description_strike">Strike</string>
+    <string name="content_description_background">Background</string>
+    <string name="book_data_touch_for_more">Touch for more information</string>
+
+    <string name="UPDATE_ERROR_AUTHORIZATION_FAILED_TITLE">Authorization Error</string>
+    <string name="UPDATE_ERROR_PROJECT_SUSPENDED_TITLE">Authorization Error</string>
+    <string name="UPDATE_ERROR_NO_NETWORK_CONNECTION_TITLE">Network Unavailable</string>
+    <string name="UPDATE_ERROR_SERVICE_NOT_AVAILABLE_TITLE">Service Unavailable</string>
+    <string name="UPDATE_ERROR_UPDATE_SDK_TITLE">Unsupported Version</string>
+    <string name="UPDATE_ERROR_TIMESTAMP_OUT_OF_RANGE_TITLE">Clock Sync Error</string>
+    <string name="UPDATE_ERROR_REQUEST_TIMEOUT_TITLE">Request Timeout</string>
+    <string name="UPDATE_ERROR_BAD_FRAME_QUALITY_TITLE">Poor Camera Image</string>
+    <string name="UPDATE_ERROR_UNKNOWN_TITLE">Service Unavailable</string>
+    <string name="UPDATE_ERROR_AUTHORIZATION_FAILED_DESC">The cloud recognition service access keys are incorrect or have expired.</string>
+    <string name="UPDATE_ERROR_PROJECT_SUSPENDED_DESC">The cloud recognition service has been suspended.</string>
+    <string name="UPDATE_ERROR_NO_NETWORK_CONNECTION_DESC">Please check your internet connection and try again.</string>
+    <string name="UPDATE_ERROR_SERVICE_NOT_AVAILABLE_DESC">The service is unavailable, please try again later.</string>
+    <string name="UPDATE_ERROR_UPDATE_SDK_DESC">The application is using an unsupported version of Vuforia.</string>
+    <string name="UPDATE_ERROR_TIMESTAMP_OUT_OF_RANGE_DESC">Please update the date and time and try again.</string>
+    <string name="UPDATE_ERROR_REQUEST_TIMEOUT_DESC">The network request has timed out, please check your internet connection and try again.</string>
+    <string name="UPDATE_ERROR_BAD_FRAME_QUALITY_DESC">The camera does not have enough detail, please try again later.</string>
+    <string name="UPDATE_ERROR_UNKNOWN_DESC">The service is unavaiable, please try again later.</string>
+
+    <string name="INIT_ERROR">Error</string>
+    <string name="INIT_ERROR_DEVICE_NOT_SUPPORTED">Failed to initialize Vuforia. This device is not supported.</string>
+    <string name="INIT_ERROR_NO_CAMERA_ACCESS">Failed to initialize Vuforia. Camera not accessible</string>
+    <string name="INIT_LICENSE_ERROR_MISMATCH_KEY">Vuforia App key is not valid for this product. Please get a valid key, by logging into your account at developer.vuforia.com and choosing the right product type during project creation.</string>
+    <string name="INIT_LICENSE_ERROR_MISSING_KEY">Vuforia App key is missing. Please get a valid key, by logging into your account at developer.vuforia.com and creating a new project.</string>
+    <string name="INIT_LICENSE_ERROR_INVALID_KEY">Invalid Key used. Please make sure you are using a valid Vuforia App Key.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT">Unable to contact server. Please try again later.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT">No network available. Please make sure you are connected to the Internet.</string>
+    <string name="INIT_LICENSE_ERROR_CANCELED_KEY">This app license key has been canceled and may no longer be used. Please get a new license key.</string>
+    <string name="INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH">Vuforia App key is not valid for this product. Please get a valid key, by logging into your account at developer.vuforia.com and choosing the right product type during project creation.</string>
+    <string name="INIT_LICENSE_ERROR_UNKNOWN_ERROR">Failed to initialize Vuforia.</string>
+    <string name="INIT_OBJECT_DATASET_NOT_FOUND_TITLE">Database not found</string>
+    <string name="INIT_OBJECT_DATASET_NOT_FOUND">Please scan an object and load a database</string>
+
+    <string name="content_desc_camera_button">Camera Button</string>
+    <string name="overlay_build_target_help">Hold the device parallel to the target</string>
+    <string name="target_quality_error_title">Low Quality Image</string>
+    <string name="target_quality_error_desc">The image has very little detail, please try another.</string>
+
+    <string name="menu_back">SchedulAR</string>
+    <string name="menu_extended_tracking">Extended Tracking</string>
+    <string name="menu_character_mode">Character Mode</string>
+    <string name="menu_flash">Flash</string>
+    <string name="menu_flash_error_on">Unable to turn on flash</string>
+    <string name="menu_flash_error_off">Unable to turn off flash</string>
+    <string name="menu_contAutofocus">Autofocus</string>
+    <string name="menu_contAutofocus_error_on">Unable to activate Continuous Auto-Focus</string>
+    <string name="menu_contAutofocus_error_off">Unable to deactivate Continuous Auto-Focus</string>
+    <string name="menu_datasets">DATASETS</string>
+    <string name="menu_camera">CAMERA</string>
+    <string name="menu_camera_front">Front</string>
+    <string name="menu_camera_back">Rear</string>
+    <string name="menu_button_red">Red</string>
+    <string name="menu_button_blue">Blue</string>
+    <string name="menu_button_yellow">Yellow</string>
+    <string name="menu_button_green">Green</string>
+
+    <string name="splash_screen_description">Vuforia Splash</string>
+    <string name="title_activity_about_scrolling">AboutScrollingActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about.title">
+        SchedulAR
+    </string>
+    <string name="about.synopsis.title">
+        Synopsis
+    </string>
+    <string name="about.synopsis.description">
+        This is an Augmented Reality application that will
+        analyze graphical image patterns and if a match is found, then the application will
+        generate an overlay with schedule information.
+    </string>
+    <string name="about.creators.title">
+        Creators
+    </string>
+    <string name="about.creators.description">
+        Jason Chan Zhang\nJoshua Iwikari\nJaimie Lopez\nErik Huerta
+    </string>
+    <string name="about.begin.title">
+        Begin Experience!
+    </string>
+
+</resources>

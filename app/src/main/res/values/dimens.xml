@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="menu_title">22sp</dimen>
+    <dimen name="menu_title_padding">14dp</dimen>
+    <dimen name="menu_activities_list_padding_left">24dp</dimen>
+    <dimen name="menu_activities_list_padding_top_down">14dp</dimen>
+    <dimen name="menu_entries_text">20sp</dimen>
+    <dimen name="menu_entries_title">16sp</dimen>
+    <dimen name="menu_entries_sides_padding">10dp</dimen>
+    <dimen name="menu_entries_top_down_padding">15dp</dimen>
+    <dimen name="menu_entries_top_down_radio_padding">7dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="overlay_title">15sp</dimen>
+    <dimen name="overlay_author">13sp</dimen>
+    <dimen name="overlay_rating_text">12sp</dimen>
+    <dimen name="overlay_price_old">16sp</dimen>
+    <dimen name="overlay_touch_for_more">9sp</dimen>
+    <dimen name="overlay_price_title">11.5sp</dimen>
+    <dimen name="overlay_price_value">16sp</dimen>
+    <dimen name="overlay_status">14sp</dimen>
+
+</resources>

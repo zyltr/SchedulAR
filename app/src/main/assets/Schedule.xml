@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="QR-5" size="0.279400 0.215900" />
+    <ImageTarget name="QR-4" size="0.279400 0.215900" />
+    <ImageTarget name="QR-3" size="0.279400 0.215900" />
+    <ImageTarget name="QR-2" size="0.279400 0.215900" />
+    <ImageTarget name="QR-1" size="0.279400 0.215900" />
+    <ImageTarget name="SnowLeopard-Target" size="0.279400 0.215900" />
+  </Tracking>
+</QCARConfig>
