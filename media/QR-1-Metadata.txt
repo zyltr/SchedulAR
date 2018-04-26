@@ -1,0 +1,6 @@
+{
+"Target" : "QR-1",
+"Course" : "Physics",
+"Schedule" : "M | W | F @ 8:00 A.M to 9:05 A.M",
+"Professor" : "Albert Einstein"
+}

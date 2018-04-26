@@ -1,0 +1,6 @@
+{
+"Target" : "Snow Leopard",
+"Course" : "Software Engineering",
+"Schedule" : "Tu | Th @ 7:00 P.M to 9:00 P.M",
+"Professor" : "H. Zaidi"
+}
