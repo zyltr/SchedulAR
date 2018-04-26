@@ -3,14 +3,11 @@ package com.Schedular.Schedule;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +25,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.Schedular.R;
+import com.Schedular.Vuforia.Application.SampleApplicationControl;
+import com.Schedular.Vuforia.Application.SampleApplicationException;
+import com.Schedular.Vuforia.Application.SampleApplicationSession;
+import com.Schedular.Vuforia.Utilities.LoadingDialogHandler;
+import com.Schedular.Vuforia.Utilities.SampleApplicationGLView;
+import com.Schedular.Vuforia.Utilities.Texture;
 import com.vuforia.CameraDevice;
 import com.vuforia.ObjectTracker;
 import com.vuforia.State;
@@ -37,31 +40,14 @@ import com.vuforia.Trackable;
 import com.vuforia.Tracker;
 import com.vuforia.TrackerManager;
 import com.vuforia.Vuforia;
-import com.Schedular.Vuforia.Application.SampleApplicationControl;
-import com.Schedular.Vuforia.Application.SampleApplicationException;
-import com.Schedular.Vuforia.Application.SampleApplicationSession;
-import com.Schedular.Vuforia.Utilities.LoadingDialogHandler;
-import com.Schedular.Vuforia.Utilities.SampleApplicationGLView;
-import com.Schedular.Vuforia.Utilities.Texture;
 
-import org.apache.http.util.ByteArrayBuffer;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 
 public class Schedules extends Activity implements SampleApplicationControl {
 
     // These codes match the ones defined in TargetFinder in Vuforia.jar
-    static final int INIT_SUCCESS = 2;
-    static final int INIT_ERROR_NO_NETWORK_CONNECTION = -1;
-    static final int INIT_ERROR_SERVICE_NOT_AVAILABLE = -2;
     static final int UPDATE_ERROR_AUTHORIZATION_FAILED = -1;
     static final int UPDATE_ERROR_PROJECT_SUSPENDED = -2;
     static final int UPDATE_ERROR_NO_NETWORK_CONNECTION = -3;
@@ -80,14 +66,11 @@ public class Schedules extends Activity implements SampleApplicationControl {
     static final int SHOW_LOADING_DIALOG = 1;
     private static final String LOGTAG = "Schedules";
 
-    // Defines the Server URL to get the books data
-    private static final String mServerURL = "https://developer.vuforia.com/samples/cloudreco/json/";
-
     // Stores the current status of the target ( if is being displayed or not )
     private static final int SCHEDULEINFO_NOT_DISPLAYED = 0;
     private static final int SCHEDULEINFO_IS_DISPLAYED = 1;
-    private static final String kAccessKey = "b3b58819edccca17755cfcae95ea0f40c0eaa0da";
-    private static final String kSecretKey = "4f2358936188b461ad608e50a82c1593d55cfeb0";
+    private static final String kAccessKey = "";
+    private static final String kSecretKey = "";
 
     // size of the Texture to be generated with the book data
     private static int mTextureSize = 768;
@@ -101,7 +84,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
 
     // Active Book Data
     private Schedule mScheduleData;
-    private String mScheduleJSONUrl;
+    private String mScheduleMetadata;
     private Texture mScheduleDataTexture;
 
     // Indicates if the app is currently loading the book data
@@ -140,6 +123,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     private float mdpiScaleIndicator;
     private Activity mActivity = null;
 
+    // TODO -> IGNORE
     private void initStateVariables() {
         mRenderer.setRenderState(SchedulesRenderer.RS_SCANNING);
         mRenderer.setProductTexture(null);
@@ -156,6 +140,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Function to generate the OpenGL Texture Object in the renderFrame thread
      */
+    // TODO -> IGNORE
     public void productTextureIsCreated() {
         mRenderer.setRenderState(SchedulesRenderer.RS_TEXTURE_GENERATED);
     }
@@ -420,13 +405,13 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Starts the WebView with the Schedule Extra Data
      */
+    // TODO -> IGNORE
     public void startWebView(int value) {
         // Checks that we have a valid book data
         if (mScheduleData != null) {
-            // Starts an Intent to open the book URL
-            Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse(mScheduleData.getBookUrl()));
-
-            startActivity(viewIntent);
+            // Starts an Intent to open the Schedule URL
+//            Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse(mScheduleData.getBookUrl()));
+//            startActivity(viewIntent);
         }
     }
 
@@ -523,9 +508,10 @@ public class Schedules extends Activity implements SampleApplicationControl {
      * Generates a texture for the schedule data fetching the schedule info from the
      * specified schedule URL
      */
-    public void createProductTexture(String scheduleJSONUrl) {
-        // gets book url from parameters
-        mScheduleJSONUrl = scheduleJSONUrl.trim();
+    // TODO -> IGNORE
+    public void createProductTexture( String scheduleMetadata ) {
+        // gets Schedule Metadata from parameters
+        mScheduleMetadata = scheduleMetadata;
 
         // Cleans old texture reference if necessary
         if (mScheduleDataTexture != null) {
@@ -540,36 +526,6 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     /**
-     * Downloads the image from the Url specified as a paremeter and returns the
-     * array of bytes with the image Data for storing it on the Local Database
-     */
-    private byte[] downloadImage(final String imageUrl) {
-        ByteArrayBuffer baf = null;
-
-        try {
-            URL url = new URL(imageUrl);
-            URLConnection ucon = url.openConnection();
-            InputStream is = ucon.getInputStream();
-            BufferedInputStream bis = new BufferedInputStream(is, 128);
-            baf = new ByteArrayBuffer(128);
-
-            // get the bytes one by one
-            int current = 0;
-            while ((current = bis.read()) != -1) {
-                baf.append((byte) current);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (baf == null) {
-            return null;
-        } else {
-            return baf.toByteArray();
-        }
-    }
-
-    /**
      * Returns the current Schedule Data Texture
      */
     public Texture getProductTexture() {
@@ -581,24 +537,17 @@ public class Schedules extends Activity implements SampleApplicationControl {
      */
     private void updateProductView(ScheduleOverlayView productView, Schedule schedule) {
         /* Update our Schedule */
+        productView.setTarget(schedule.getTarget());
         productView.setCourse( schedule.getCourse() );
         productView.setSchedule( schedule.getSchedule() );
         productView.setProfessor( schedule.getProfessor() );
-
-        // TODO -> IGNORE
-        productView.setBookTitle(schedule.getTitle());
-        productView.setBookPrice(schedule.getPriceList());
-        productView.setYourPrice(schedule.getPriceYour());
-        productView.setBookRatingCount(schedule.getRatingTotal());
-        productView.setRating(schedule.getRatingAvg());
-        productView.setBookAuthor(schedule.getAuthor());
-        productView.setCoverViewFromBitmap(schedule.getThumb());
     }
 
     /**
      * Starts application content Mode Displays UI Overlays and turns Cloud
      * Recognition off
      */
+    // TODO -> IGNORE
     public void enterContentMode() {
         // Updates state variables
         mScheduleInfoStatus = SCHEDULEINFO_IS_DISPLAYED;
@@ -621,6 +570,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Hides the 2D Overlay view and starts C service again
      */
+    // TODO -> IGNORE
     private void enterScanningMode() {
         // Hides the 2D Overlay
         hide2DOverlay();
@@ -669,6 +619,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     }
 
     @Override
+    // TODO -> IGNORE
     public boolean doLoadTrackersData() {
         Log.d(LOGTAG, "initSchedules");
 
@@ -885,6 +836,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
         }
     }
 
+    // TODO -> IGNORE
     @Override
     public boolean doInitTrackers() {
         TrackerManager trackerManager = TrackerManager.getInstance();
@@ -904,6 +856,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
         return result;
     }
 
+    // TODO -> IGNORE
     @Override
     public boolean doStartTrackers() {
         // Indicate if the trackers were started correctly
@@ -923,6 +876,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
         return result;
     }
 
+    // TODO -> IGNORE
     @Override
     public boolean doStopTrackers() {
         // Indicate if the trackers were stopped correctly
@@ -947,6 +901,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
         return result;
     }
 
+    // TODO -> IGNORE
     @Override
     public boolean doDeinitTrackers() {
         // Indicate if the trackers were deinitialized correctly
@@ -957,7 +912,6 @@ public class Schedules extends Activity implements SampleApplicationControl {
 
         return result;
     }
-
 
     /**
      * Crates a Handler to Show/Hide the status bar overlay from an UI Thread
@@ -1019,20 +973,12 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Gets the Schedule data from a JSON Object
      */
-    private class GetScheduleDataTask extends AsyncTask<Void, Void, Void> {
-        private static final String CHARSET = "UTF-8";
-        private String mScheduleDataJSONFullUrl;
 
+    private class GetScheduleDataTask extends AsyncTask<Void, Void, Void> {
+
+        // TODO -> IGNORE
         protected void onPreExecute() {
             mIsLoadingScheduleData = true;
-
-            // Initialize the current scheudle full url to search
-            // for the data
-            StringBuilder sBuilder = new StringBuilder();
-            sBuilder.append(mServerURL);
-            sBuilder.append(mScheduleJSONUrl);
-
-            mScheduleDataJSONFullUrl = sBuilder.toString();
 
             // Shows the loading dialog
             loadingDialogHandler.sendEmptyMessage(SHOW_LOADING_DIALOG);
@@ -1040,81 +986,35 @@ public class Schedules extends Activity implements SampleApplicationControl {
 
 
         protected Void doInBackground(Void... params) {
-            HttpURLConnection connection = null;
-
             try {
-                // Connects to the Server to get the book data
-                URL url = new URL(mScheduleDataJSONFullUrl);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestProperty("Accept-Charset", CHARSET);
-                connection.connect();
-
-                int status = connection.getResponseCode();
-
-                // Checks that the schedule JSON url exists and connection
-                // has been successful
-                if (status != HttpURLConnection.HTTP_OK) {
-                    // Cleans schedule data variables
-                    mScheduleData = null;
-                    mScheduleInfoStatus = SCHEDULEINFO_NOT_DISPLAYED;
-
-                    // Hides loading dialog
-                    loadingDialogHandler.sendEmptyMessage(HIDE_LOADING_DIALOG);
-
-                    // Cleans current tracker Id and returns to scanning mode
-                    cleanTargetTrackedId();
-
-                    enterScanningMode();
-                }
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder builder = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    builder.append(line);
-                }
-
                 // Cleans any old reference to mScheduleData
-                if (mScheduleData != null) {
-                    mScheduleData = null;
+                if (mScheduleData != null) { mScheduleData = null; }
 
-                }
-
-                JSONObject jsonObject = new JSONObject(builder.toString());
+                JSONObject jsonObject = new JSONObject(mScheduleMetadata);
 
                 // Generates a new Schedule Object with the JSON object data
                 mScheduleData = new Schedule();
 
-                mScheduleData.setTitle(jsonObject.getString("title"));
-                mScheduleData.setAuthor(jsonObject.getString("author"));
-                mScheduleData.setBookUrl(jsonObject.getString("bookurl"));
-                mScheduleData.setPriceList(jsonObject.getString("list price"));
-                mScheduleData.setPriceYour(jsonObject.getString("your price"));
-                mScheduleData.setRatingAvg(jsonObject.getString("average rating"));
-                mScheduleData.setRatingTotal(jsonObject.getString("# of ratings"));
+                Log.d(LOGTAG, "Metadata : " + mScheduleMetadata);
+                Log.d(LOGTAG, "JSON : " + jsonObject.toString());
 
-                // Gets the schedule thumb image
-                byte[] thumb = downloadImage(jsonObject.getString("thumburl"));
-
-                if (thumb != null) {
-
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(thumb, 0, thumb.length);
-                    mScheduleData.setThumb(bitmap);
-                }
+                mScheduleData.setTarget(jsonObject.getString("Target"));
+                mScheduleData.setCourse(jsonObject.getString("Course"));
+                mScheduleData.setSchedule(jsonObject.getString("Schedule"));
+                mScheduleData.setProfessor(jsonObject.getString("Professor"));
             } catch (Exception e) {
                 Log.d(LOGTAG, "Couldn't get schedule. e: " + e);
-            } finally {
-                connection.disconnect();
             }
 
             return null;
         }
 
+        // TODO -> IGNORE
         protected void onProgressUpdate(Void... values) {
 
         }
 
-
+        // TODO -> IGNORE
         protected void onPostExecute(Void result) {
             if (mScheduleData != null) {
                 // Generates a View to display the schedule data
@@ -1185,7 +1085,8 @@ public class Schedules extends Activity implements SampleApplicationControl {
             return true;
         }
 
-
+        // TODO -> IGNORE
+        // TODO -> In this method, a WebView is started when a "Schedule" is tapped
         public boolean onSingleTapUp(MotionEvent event) {
 
             // If the book info is not displayed it performs an Autofocus
@@ -1223,7 +1124,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
                 // Checks touch inside the bounding box
                 if (x < screenRight && x > screenLeft && y < screenDown && y > screenUp) {
                     // Starts the webView
-                    startWebView(0);
+//                    startWebView(0);
                 }
             }
 

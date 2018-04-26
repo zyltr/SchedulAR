@@ -15,11 +15,15 @@ public class Schedule
     private Bitmap thumb;
     private String bookUrl;
 
+    private String target;
     private String course;
     private String schedule;
     private String professor;
 
     public Schedule () { }
+
+
+    public void setTarget(String target) { this.target = target; }
 
     public void setCourse(String course) {
         this.course = course;
@@ -32,6 +36,8 @@ public class Schedule
     public void setProfessor(String professor) {
         this.professor = professor;
     }
+
+    public String getTarget() { return target; }
 
     public String getCourse() {
         return course;

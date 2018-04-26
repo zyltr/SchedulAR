@@ -472,8 +472,7 @@ public class ScheduleTargets extends Activity implements SampleApplicationContro
             group.addRadioItem(getString(R.string.menu_camera_back), CMD_CAMERA_REAR, true);
         }
 
-        group = mSampleAppMenu
-                .addGroup(getString(R.string.menu_datasets), true);
+        group = mSampleAppMenu.addGroup(getString(R.string.menu_datasets), true);
         mStartDatasetsIndex = CMD_DATASET_START_INDEX;
         mDatasetsNumber = mDatasetStrings.size();
 
