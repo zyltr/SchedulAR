@@ -1,0 +1,6 @@
+{
+"Target" : "QR-4",
+"Course" : "History",
+"Schedule" : "W | F @ 11:00 A.M to 1:00 P.M",
+"Professor" : "George Washington"
+}
