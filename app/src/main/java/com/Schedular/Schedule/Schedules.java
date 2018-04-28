@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -24,12 +27,14 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.Schedular.Database.DatabaseHelper;
 import com.Schedular.R;
 import com.Schedular.Vuforia.Application.SampleApplicationControl;
 import com.Schedular.Vuforia.Application.SampleApplicationException;
 import com.Schedular.Vuforia.Application.SampleApplicationSession;
 import com.Schedular.Vuforia.Utilities.LoadingDialogHandler;
 import com.Schedular.Vuforia.Utilities.SampleApplicationGLView;
+import com.Schedular.Vuforia.Utilities.SchedulesRenderer;
 import com.Schedular.Vuforia.Utilities.Texture;
 import com.vuforia.CameraDevice;
 import com.vuforia.ObjectTracker;
@@ -43,7 +48,10 @@ import com.vuforia.Vuforia;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.Arrays;
+import java.util.Date;
 
 public class Schedules extends Activity implements SampleApplicationControl {
 
@@ -69,8 +77,8 @@ public class Schedules extends Activity implements SampleApplicationControl {
     // Stores the current status of the target ( if is being displayed or not )
     private static final int SCHEDULEINFO_NOT_DISPLAYED = 0;
     private static final int SCHEDULEINFO_IS_DISPLAYED = 1;
-    private static final String kAccessKey = "";
-    private static final String kSecretKey = "";
+    private static final String kAccessKey = "0f6407f6111ad2b027109a3a0511fc711563f0f6";
+    private static final String kSecretKey = "44b33bc9bdaa00f68968308dfec6d3b81d8c576e";
 
     // size of the Texture to be generated with the book data
     private static int mTextureSize = 768;
@@ -122,6 +130,10 @@ public class Schedules extends Activity implements SampleApplicationControl {
     private double mLastErrorTime;
     private float mdpiScaleIndicator;
     private Activity mActivity = null;
+
+    // Database Variables
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
 
     // TODO -> IGNORE
     private void initStateVariables() {
@@ -187,6 +199,24 @@ public class Schedules extends Activity implements SampleApplicationControl {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(LOGTAG, "onCreate");
         super.onCreate(savedInstanceState);
+
+        // Initializing Database
+        mDBHelper = new DatabaseHelper(this);
+
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
+        try {
+            mDb = mDBHelper.getWritableDatabase();
+        } catch (SQLException mSQLException) {
+            throw mSQLException;
+        }
+
+        Log.d(LOGTAG, "Database Name : " + mDBHelper.getDatabaseName());
+        // End
 
         mActivity = this;
 
@@ -509,7 +539,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
      * specified schedule URL
      */
     // TODO -> IGNORE
-    public void createProductTexture( String scheduleMetadata ) {
+    public void createProductTexture(String scheduleMetadata) {
         // gets Schedule Metadata from parameters
         mScheduleMetadata = scheduleMetadata;
 
@@ -528,6 +558,7 @@ public class Schedules extends Activity implements SampleApplicationControl {
     /**
      * Returns the current Schedule Data Texture
      */
+    // TODO -> IGNORE
     public Texture getProductTexture() {
         return mScheduleDataTexture;
     }
@@ -538,9 +569,9 @@ public class Schedules extends Activity implements SampleApplicationControl {
     private void updateProductView(ScheduleOverlayView productView, Schedule schedule) {
         /* Update our Schedule */
         productView.setTarget(schedule.getTarget());
-        productView.setCourse( schedule.getCourse() );
-        productView.setSchedule( schedule.getSchedule() );
-        productView.setProfessor( schedule.getProfessor() );
+        productView.setCourse(schedule.getCourse());
+        productView.setSchedule(schedule.getSchedule());
+        productView.setProfessor(schedule.getProfessor());
     }
 
     /**
@@ -988,7 +1019,9 @@ public class Schedules extends Activity implements SampleApplicationControl {
         protected Void doInBackground(Void... params) {
             try {
                 // Cleans any old reference to mScheduleData
-                if (mScheduleData != null) { mScheduleData = null; }
+                if (mScheduleData != null) {
+                    mScheduleData = null;
+                }
 
                 JSONObject jsonObject = new JSONObject(mScheduleMetadata);
 
@@ -998,10 +1031,91 @@ public class Schedules extends Activity implements SampleApplicationControl {
                 Log.d(LOGTAG, "Metadata : " + mScheduleMetadata);
                 Log.d(LOGTAG, "JSON : " + jsonObject.toString());
 
-                mScheduleData.setTarget(jsonObject.getString("Target"));
-                mScheduleData.setCourse(jsonObject.getString("Course"));
-                mScheduleData.setSchedule(jsonObject.getString("Schedule"));
-                mScheduleData.setProfessor(jsonObject.getString("Professor"));
+                // TODO -> Query Database Here (Only matches with first result
+                String building = jsonObject.getString("Building");
+                String room = jsonObject.getString("Room");
+                Date currentDate = new Date();
+
+                Cursor queryResults = mDb.rawQuery( "SELECT * FROM Schedule WHERE Building = " + building + " AND Room = " + room, null );
+                queryResults.moveToFirst();
+
+                String[] columnNames = queryResults.getColumnNames();
+                Log.d(LOGTAG, "Column Names : " + Arrays.toString(columnNames));
+
+                String target = ":B: :R:";
+                String course = ":D: :CN: - :SN:";
+                String schedule = ":D: from :ST: to :ET:";
+                String instructor = ":I:";
+
+                if (queryResults.getCount() > 0)
+                {
+                    for (int columnIndex = 0; columnIndex < columnNames.length; ++columnIndex)
+                    {
+                        switch (columnNames[columnIndex].toUpperCase())
+                        {
+                            case "DEPARTMENT":
+                            {
+                                course = course.replaceFirst(":D:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            case "COURSENUMBER":
+                            {
+                                course = course.replaceFirst(":CN:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            case "SECTIONNUMBER":
+                            {
+                                course = course.replaceFirst(":SN:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            case "DAYS":
+                            {
+                                schedule = schedule.replaceFirst(":D:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            case "STARTTIME":
+                            {
+                                schedule = schedule.replaceFirst(":ST:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            case "ENDTIME":
+                            {
+                                schedule = schedule.replaceFirst(":ET:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            case "BUILDING":
+                            {
+                                target = target.replaceFirst(":B:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            case "ROOM":
+                            {
+                                target = target.replaceFirst(":R:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            case "INSTRUCTOR":
+                            {
+                                instructor = instructor.replace(":I:", queryResults.getString(columnIndex));
+                                break;
+                            }
+                            default:
+                                break;
+                        }
+                    }
+                }
+                // TODO -> END
+                else
+                {
+                    target = currentDate.toString();
+                    course = currentDate.toString();
+                    schedule = currentDate.toString();
+                    instructor = currentDate.toString();
+                }
+
+                mScheduleData.setTarget(target);
+                mScheduleData.setCourse(course);
+                mScheduleData.setSchedule(schedule);
+                mScheduleData.setProfessor(instructor);
             } catch (Exception e) {
                 Log.d(LOGTAG, "Couldn't get schedule. e: " + e);
             }

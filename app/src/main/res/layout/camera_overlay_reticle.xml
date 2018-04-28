@@ -26,15 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             />
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_gravity="center"
-            android:src="@drawable/reticle"
-            android:adjustViewBounds="true"
-            android:clickable="false"
-            />
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.Schedular"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 22
         versionCode 700
         versionName "7.0"

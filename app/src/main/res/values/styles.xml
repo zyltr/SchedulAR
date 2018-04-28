@@ -10,10 +10,4 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="starRatingBar" parent="@android:style/Widget.RatingBar">
-        <item name="android:progressDrawable">@drawable/rating_bar_full</item>
-        <item name="android:minHeight">11dp</item>
-        <item name="android:maxHeight">11dp</item>
-    </style>
-
 </resources>

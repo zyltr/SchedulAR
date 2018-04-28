@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -20,7 +21,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.Schedular.R;
-import com.Schedular.ScheduleTargets.AboutActivity;
+import com.Schedular.About.AboutActivity;
 
 
 public class ActivitySplashScreen extends Activity {
@@ -36,8 +37,7 @@ public class ActivitySplashScreen extends Activity {
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN );
 
         LayoutInflater inflater = LayoutInflater.from ( this );
-        RelativeLayout layout = ( RelativeLayout ) inflater.inflate (
-                R.layout.splash_screen, null, false );
+        ConstraintLayout layout = ( ConstraintLayout ) inflater.inflate (R.layout.splash_screen, null, false );
 
         addContentView ( layout, new LayoutParams ( LayoutParams.MATCH_PARENT,
                                                     LayoutParams.MATCH_PARENT ) );

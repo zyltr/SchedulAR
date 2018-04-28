@@ -1,6 +1,0 @@
-{
-"Target" : "QR-2",
-"Course" : "English",
-"Schedule" : "M | W @ 10:00 A.M to 12:0 A.M",
-"Professor" : "Stephen King"
-}
