@@ -77,8 +77,8 @@ public class Schedules extends Activity implements SampleApplicationControl {
     // Stores the current status of the target ( if is being displayed or not )
     private static final int SCHEDULEINFO_NOT_DISPLAYED = 0;
     private static final int SCHEDULEINFO_IS_DISPLAYED = 1;
-    private static final String kAccessKey = "0f6407f6111ad2b027109a3a0511fc711563f0f6";
-    private static final String kSecretKey = "44b33bc9bdaa00f68968308dfec6d3b81d8c576e";
+    private static final String kAccessKey = "";
+    private static final String kSecretKey = "";
 
     // size of the Texture to be generated with the book data
     private static int mTextureSize = 768;
