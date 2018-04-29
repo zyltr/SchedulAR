@@ -308,6 +308,7 @@ public class SchedulesRenderer implements GLSurfaceView.Renderer, SampleAppRende
         TargetFinder finder = objectTracker.getTargetFinder();
 
         // Renders the current state - User process Feedback
+        // TODO -> If not cloud based,ignore this
         if (finder.isRequesting()) {
             // Requesting State - Show Requesting text in Status Bar
             mActivity.setStatusBarText("Requesting");
@@ -468,6 +469,7 @@ public class SchedulesRenderer implements GLSurfaceView.Renderer, SampleAppRende
 
 
     private void generateProductTextureInOpenGL() {
+        // TODO -> Important Schedules Method
         Texture textureObject = mActivity.getProductTexture();
 
         if (textureObject != null) {
