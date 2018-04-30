@@ -116,6 +116,7 @@ public class Schedules extends Activity implements SampleApplicationControl
     private ImageButton mCloseButton;
     private ImageButton mNextButton;
     private ImageButton mPreviousButton;
+    private ImageButton mInformationButton;
 
     // Error message handling:
     private int mlastErrorCode = 0;
@@ -421,6 +422,15 @@ public class Schedules extends Activity implements SampleApplicationControl
         } );
 
         final Activity activity = this;
+
+        mInformationButton = ( ImageButton ) findViewById ( R.id.informationImageButton );
+        mInformationButton.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick ( View view )
+            {
+                Toast.makeText ( activity, "Needs Fixing", Toast.LENGTH_SHORT ).show ();
+            }
+        } );
 
         mNextButton = ( ImageButton ) findViewById ( R.id.nextImageButton );
         mNextButton.setOnClickListener ( new View.OnClickListener ( ) {
@@ -1201,12 +1211,14 @@ public class Schedules extends Activity implements SampleApplicationControl
                 if ( message.what == SHOW_2D_OVERLAY )
                 {
                     schedules.mCloseButton.setVisibility ( View.VISIBLE );
+                    schedules.mInformationButton.setVisibility ( View.VISIBLE );
                     schedules.mNextButton.setVisibility ( View.VISIBLE );
                     schedules.mPreviousButton.setVisibility ( View.VISIBLE );
                 }
                 else
                 {
                     schedules.mCloseButton.setVisibility ( View.INVISIBLE );
+                    schedules.mInformationButton.setVisibility ( View.INVISIBLE );
                     schedules.mNextButton.setVisibility ( View.INVISIBLE );
                     schedules.mPreviousButton.setVisibility ( View.INVISIBLE );
                 }
