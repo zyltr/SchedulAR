@@ -14,6 +14,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
@@ -24,6 +26,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
@@ -31,6 +34,9 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.Schedular.R;
+import com.Schedular.Schedule.ScheduleOverlayView;
+import com.Schedular.Schedule.Schedules;
+import com.Schedular.Schedule.SchedulesRenderer;
 import com.vuforia.*;
 import com.Schedular.Vuforia.Application.SampleApplicationControl;
 import com.Schedular.Vuforia.Application.SampleApplicationException;
@@ -212,7 +218,6 @@ public class ScheduleTargets extends Activity implements SampleApplicationContro
 
         // Adds the inflated layout to the view
         addContentView(mUILayout, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-
     }
 
     // Methods to load and destroy tracking data.
@@ -326,15 +331,15 @@ public class ScheduleTargets extends Activity implements SampleApplicationContro
             // that the OpenGL ES surface view gets added
             // BEFORE the camera is started and video
             // background is configured.
-            addContentView(mGlView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            addContentView(mGlView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));;
+
+            vuforiaAppSession.startAR(CameraDevice.CAMERA_DIRECTION.CAMERA_DIRECTION_DEFAULT);
 
             // Sets the UILayout to be drawn in front of the camera
             mUILayout.bringToFront();
 
             // Sets the layout background to transparent
             mUILayout.setBackgroundColor(Color.TRANSPARENT);
-
-            vuforiaAppSession.startAR(CameraDevice.CAMERA_DIRECTION.CAMERA_DIRECTION_DEFAULT);
 
             mSampleAppMenu = new SampleAppMenu(this, this, "Schedule Targets", mGlView, mUILayout, null);
             setSampleAppMenuSettings();
@@ -372,8 +377,135 @@ public class ScheduleTargets extends Activity implements SampleApplicationContro
         });
     }
 
+    private String stringForStatus (int status)
+    {
+        switch (status)
+        {
+            case TrackableResult.STATUS.DETECTED: {
+                return "DETECTED";
+            }
+            case TrackableResult.STATUS.EXTENDED_TRACKED:
+            {
+                return "EXTENDED TRACKED";
+            }
+            case TrackableResult.STATUS.LIMITED:
+            {
+                return "LIMITED";
+            }
+            case TrackableResult.STATUS.NO_POSE:
+            {
+                return "NO POSE";
+            }
+            case TrackableResult.STATUS.TRACKED:
+            {
+                return "TRACKED";
+            }
+            default:
+                return "DEFAULT";
+
+        }
+    }
+
+    private String stringForStatusInfo (int statusInfo)
+    {
+        switch (statusInfo)
+        {
+            case TrackableResult.STATUS_INFO.EXCESSIVE_MOTION:
+            {
+                return "EXCESSIVE MOTION";
+            }
+            case TrackableResult.STATUS_INFO.INITIALIZING:
+            {
+                return "INITIALIZING";
+            }
+            case TrackableResult.STATUS_INFO.INSUFFICIENT_FEATURES:
+            {
+                return "INSUFFICIENT FEATURES";
+            }
+            case TrackableResult.STATUS_INFO.NORMAL:
+            {
+                return "NORMAL";
+            }
+            case TrackableResult.STATUS_INFO.UNKNOWN:
+            {
+                return "UNKNOWN";
+            }
+            default:
+                return "DEFAULT";
+        }
+    }
+
+    // TODO -> EXPERIMENTAL
+    int currentTrackableId = 0;
+    private static int mTextureSize = 768;
+    Trackable currentTrackable;
+    Texture mTexture;
+
+    public void createProductTexture ()
+    {
+        // Generates a View to display the schedule data
+        ScheduleOverlayView productView = new ScheduleOverlayView(ScheduleTargets.this);
+
+        // Sets the layout params
+        productView.setLayoutParams(new ViewGroup.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+
+        // Sets View measure - This size should be the same as the
+        // texture generated to display the overlay in order for the
+        // texture to be centered in screen
+        productView.measure(View.MeasureSpec.makeMeasureSpec(mTextureSize, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(mTextureSize, View.MeasureSpec.EXACTLY));
+
+        // updates layout size
+        productView.layout(0, 0, productView.getMeasuredWidth(), productView.getMeasuredHeight());
+
+        // Draws the View into a Bitmap. Note we are allocating several
+        // large memory buffers thus attempt to clear them as soon as
+        // they are no longer required:
+        Bitmap bitmap = Bitmap.createBitmap(mTextureSize, mTextureSize, Bitmap.Config.ARGB_8888);
+
+        Canvas c = new Canvas(bitmap);
+        productView.draw(c);
+
+        // Allocate int buffer for pixel conversion and copy pixels
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        int[] data = new int[bitmap.getWidth() * bitmap.getHeight()];
+        bitmap.getPixels(data, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+        // Generates the Texture from the int buffer
+       mTexture = Texture.loadTextureFromIntBuffer(data, width, height);
+    }
+
+    public Texture getProductTexture ()
+    {
+        if ( mTexture == null )
+            createProductTexture();
+
+        return mTexture;
+    }
+
+    // TODO -> END
+
     @Override
     public void onVuforiaUpdate(State state) {
+        int numberOfTrackableResults = state.getNumTrackableResults();
+        for (int index = 0; index < numberOfTrackableResults; ++index)
+        {
+            TrackableResult result = state.getTrackableResult(index);
+            Trackable trackable = result.getTrackable();
+
+            if ( currentTrackableId != trackable.getId() )
+            {
+                currentTrackable = trackable;
+                currentTrackableId = trackable.getId();
+                Log.d(LOGTAG, "Initialize Tracker's Texture Here");
+            }
+
+            String status = stringForStatus(result.getStatus());
+            String statusInfo = stringForStatusInfo(result.getStatusInfo());
+            Log.d(LOGTAG, "Status : " + status + " | Status Info : " + statusInfo);
+        }
+
         if (mSwitchDatasetAsap) {
             mSwitchDatasetAsap = false;
             TrackerManager trackerManager = TrackerManager.getInstance();

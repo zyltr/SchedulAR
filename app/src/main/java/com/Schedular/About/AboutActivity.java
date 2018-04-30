@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.Schedular.R;
 import com.Schedular.Schedule.Schedules;
+import com.Schedular.ScheduleTargets.ScheduleTargets;
 
 
 public class AboutActivity extends Activity {

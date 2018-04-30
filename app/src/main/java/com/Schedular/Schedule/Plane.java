@@ -7,14 +7,14 @@ Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
 ===============================================================================*/
 
-package com.Schedular.Vuforia.Utilities;
+package com.Schedular.Schedule;
 
 import java.nio.Buffer;
 
 import com.Schedular.Vuforia.Utilities.MeshObject;
 
 
-class Plane extends MeshObject
+public class Plane extends MeshObject
 {
     // Data for drawing the 3D plane as overlay
     private static final float planeVertices[] = { -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.5f, 0.5f, 0.0f, -0.5f, 0.5f, 0.0f };

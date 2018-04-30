@@ -1,11 +1,15 @@
-package com.Schedular.Vuforia.Utilities;
+package com.Schedular.Schedule;
 
 import android.content.res.Configuration;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 
-import com.Schedular.Schedule.Schedules;
+import com.Schedular.Vuforia.Application.SampleAppRenderer;
+import com.Schedular.Vuforia.Application.SampleAppRendererControl;
+import com.Schedular.Vuforia.Application.SampleApplicationSession;
+import com.Schedular.Vuforia.Utilities.SampleUtils;
+import com.Schedular.Vuforia.Utilities.Texture;
 import com.vuforia.Device;
 import com.vuforia.Matrix34F;
 import com.vuforia.ObjectTracker;
@@ -16,9 +20,6 @@ import com.vuforia.Tool;
 import com.vuforia.TrackableResult;
 import com.vuforia.TrackerManager;
 import com.vuforia.Vuforia;
-import com.Schedular.Vuforia.Application.SampleAppRenderer;
-import com.Schedular.Vuforia.Application.SampleAppRendererControl;
-import com.Schedular.Vuforia.Application.SampleApplicationSession;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -112,8 +113,7 @@ public class SchedulesRenderer implements GLSurfaceView.Renderer, SampleAppRende
                 : 1.0f);
 
         // OpenGL setup for 3D model
-        shaderProgramID = SampleUtils.createProgramFromShaderSrc(
-                Shaders.cubeMeshVertexShader, Shaders.cubeFragmentShader);
+        shaderProgramID = SampleUtils.createProgramFromShaderSrc(Shaders.cubeMeshVertexShader, Shaders.cubeFragmentShader);
 
         vertexHandle = GLES20.glGetAttribLocation(shaderProgramID,
                 "vertexPosition");

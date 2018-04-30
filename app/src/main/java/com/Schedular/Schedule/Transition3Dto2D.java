@@ -7,11 +7,12 @@ Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
 ===============================================================================*/
 
-package com.Schedular.Vuforia.Utilities;
+package com.Schedular.Schedule;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
+import com.Schedular.Vuforia.Utilities.SampleUtils;
 import com.vuforia.Matrix34F;
 import com.vuforia.Matrix44F;
 import com.vuforia.Tool;

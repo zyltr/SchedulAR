@@ -7,7 +7,7 @@ Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
 ===============================================================================*/
 
-package com.Schedular.Vuforia.Utilities;
+package com.Schedular.Schedule;
 
 public class Shaders 
 {
