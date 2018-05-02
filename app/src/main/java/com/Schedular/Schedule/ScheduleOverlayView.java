@@ -50,7 +50,7 @@ public class ScheduleOverlayView extends RelativeLayout
 
     public void setCourse ( String course )
     {
-        TextView courseTextView = (TextView) findViewById (R.id.courseTextView);
+        TextView courseTextView = (TextView) findViewById (R.id.courseHeaderTextView );
         courseTextView.setText (course);
     }
 
@@ -62,7 +62,7 @@ public class ScheduleOverlayView extends RelativeLayout
 
     public void setProfessor ( String professor )
     {
-        TextView professorTextView = (TextView) findViewById (R.id.instructorTextView);
+        TextView professorTextView = (TextView) findViewById (R.id.instructorHeaderTextView );
         professorTextView.setText (professor);
     }
 }

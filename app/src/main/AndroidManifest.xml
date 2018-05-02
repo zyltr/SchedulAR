@@ -95,17 +95,19 @@
             android:name=".ScheduleTargets.ScheduleTargets"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
             android:launchMode="singleTask"
-            android:theme="@style/SampleAppsTheme"></activity>
+            android:theme="@style/SampleAppsTheme" />
         <activity
             android:name=".About.AboutActivity"
             android:configChanges="keyboardHidden|screenSize|smallestScreenSize"
             android:label="@string/title_activity_about"
             android:launchMode="singleTask"
-            android:theme="@style/SampleAppsTheme"></activity>
-        <activity android:name=".Schedule.Schedules"
+            android:theme="@style/SampleAppsTheme" />
+        <activity
+            android:name=".Schedule.Schedules"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
             android:launchMode="singleTask"
-            android:theme="@style/SampleAppsTheme"></activity>
+            android:theme="@style/SampleAppsTheme" />
+        <activity android:name=".Schedule.DetailedScheduleActivity"></activity>
     </application>
 
 </manifest>

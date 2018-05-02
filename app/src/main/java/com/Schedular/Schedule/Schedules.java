@@ -3,6 +3,7 @@ package com.Schedular.Schedule;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -54,6 +55,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Schedules extends Activity implements SampleApplicationControl
 {
@@ -142,6 +144,13 @@ public class Schedules extends Activity implements SampleApplicationControl
     private SQLiteDatabase mDb;
     private ArrayList<Row> activeRows;
     private int activeRowsIndex = 0;
+    private boolean shouldUpdateTexture = false;
+
+    public static final String SectionNumberKey = "com.Schedular.Scheule.SectionNumberKey";
+    public static final String InstructorKeys = "com.Schedular.Scheule.InstructorKeys";
+    public static final String InstructorValues = "com.Schedular.Scheule.InstructorValues";
+    public static final String CourseKeys = "com.Schedular.Scheule.CourseKeys";
+    public static final String CourseValues = "com.Schedular.Scheule.CourseValues";
     // TODO -> END EXPERIMENTAL
 
     // TODO -> IGNORE
@@ -428,7 +437,55 @@ public class Schedules extends Activity implements SampleApplicationControl
             @Override
             public void onClick ( View view )
             {
-                Toast.makeText ( activity, "Needs Fixing", Toast.LENGTH_SHORT ).show ();
+                Intent informationIntent = new Intent ( activity, DetailedScheduleActivity.class );
+
+                // Create Information Object that will be passed to the Intent
+                // Need Instructor and Course for the Schedule being viewed. As well as Section #
+
+                // Get Section Number from Active Rows
+                String sectionNumber = activeRows.get ( activeRowsIndex ).data.get ( "SectionNumber" );
+                informationIntent.putExtra ( SectionNumberKey, sectionNumber );
+
+                // Get "Instructor" row from Table
+                String instructorName = activeRows.get ( activeRowsIndex ).data.get ( "Instructor" );
+                Cursor instructorCursor = mDb.rawQuery ( "SELECT * FROM Instructors WHERE InstructorName = ?", new String[] { instructorName } );
+                ArrayList<Row> instructorRows = new Rows ( instructorCursor ).getRows ();
+
+                // Add to Extras
+                if ( instructorRows.size () > 0 )
+                {
+                    Row desiredRow = instructorRows.get ( 0 );
+                    String [] instructorKeys = desiredRow.data.keySet ().toArray ( new String[instructorRows.size ()] );
+                    String [] instructorValues = ( String[] ) desiredRow.data.values ().toArray ( new String[instructorRows.size ()] );
+
+                    Log.d ( LOGTAG, "Instructor Keys : " + Arrays.toString ( instructorKeys ) );
+                    Log.d ( LOGTAG, "Instructor Keys : " + Arrays.toString ( instructorValues ) );
+
+                    informationIntent.putExtra ( InstructorKeys, instructorKeys );
+                    informationIntent.putExtra ( InstructorValues, instructorValues );
+                }
+
+                // Get "Course" row from Table
+                String department = activeRows.get ( activeRowsIndex ).data.get ( "Department" );
+                String courseNumber = activeRows.get ( activeRowsIndex ).data.get ( "CourseNumber" );
+                Cursor courseCursor = mDb.rawQuery ( "SELECT * FROM Courses WHERE Department = ? AND CourseNumber = ?", new String[] { department, courseNumber } );
+                ArrayList<Row> courseRows = new Rows ( courseCursor ).getRows ();
+
+                // Add to Extras
+                if ( courseRows.size () > 0 )
+                {
+                    Row desiredRow = courseRows.get ( 0 );
+                    String [] courseKeys = desiredRow.data.keySet ().toArray ( new String[instructorRows.size ()] );
+                    String [] courseValues = desiredRow.data.values ().toArray ( new String[instructorRows.size ()] );
+
+                    Log.d ( LOGTAG, "Course Keys : " + Arrays.toString ( courseKeys ) );
+                    Log.d ( LOGTAG, "Course Keys : " + Arrays.toString ( courseValues ) );
+
+                    informationIntent.putExtra ( CourseKeys, courseKeys );
+                    informationIntent.putExtra ( CourseValues, courseValues );
+                }
+
+                startActivity ( informationIntent );
             }
         } );
 
@@ -443,6 +500,7 @@ public class Schedules extends Activity implements SampleApplicationControl
                     ++activeRowsIndex;
 
                 Toast.makeText ( activity, "Next", Toast.LENGTH_SHORT ).show ();
+                shouldUpdateTexture = true;
                 updateProductTexture ();
             }
         } );
@@ -453,14 +511,13 @@ public class Schedules extends Activity implements SampleApplicationControl
             public void onClick ( View view )
             {
                 if ( activeRowsIndex - 1 >= 0 )
-                {
                     --activeRowsIndex;
-                    updateProductTexture ();
-                }
                 else
                     activeRowsIndex = activeRows.size () - 1;
 
                 Toast.makeText ( activity, "Previous", Toast.LENGTH_SHORT ).show ();
+                shouldUpdateTexture = true;
+                updateProductTexture ();
             }
         } );
 
@@ -695,7 +752,7 @@ public class Schedules extends Activity implements SampleApplicationControl
             System.gc ();
         }
 
-        new UpdateScheduleDataTask ().execute (  );
+        new GetScheduleDataTask ().execute (  );
     }
 
     /**
@@ -1253,24 +1310,27 @@ public class Schedules extends Activity implements SampleApplicationControl
                     mScheduleData = null;
                 }
 
-                JSONObject jsonObject = new JSONObject ( mScheduleMetadata );
-
                 // Generates a new Schedule Object with the JSON object data
                 mScheduleData = new Schedule ( );
 
-                Log.d ( LOGTAG, "Metadata : " + mScheduleMetadata );
-                Log.d ( LOGTAG, "JSON : " + jsonObject.toString ( ) );
+                if ( !shouldUpdateTexture )
+                {
+                    JSONObject jsonObject = new JSONObject ( mScheduleMetadata );
 
-                // TODO -> Query Database Here (Only matches with first result)
-                String building = jsonObject.getString ( "Building" );
-                String room = jsonObject.getString ( "Room" );
+                    Log.d ( LOGTAG, "Metadata : " + mScheduleMetadata );
+                    Log.d ( LOGTAG, "JSON : " + jsonObject.toString ( ) );
 
-                Cursor queryResults = mDb.rawQuery ( "SELECT * FROM Schedule WHERE Building = " + building + " AND Room = " + room, null );
+                    // TODO -> Query Database Here (Only matches with first result)
+                    String building = jsonObject.getString ( "Building" );
+                    String room = jsonObject.getString ( "Room" );
 
-                activeRows = new Rows ( queryResults ).getRows ( );
+                    Cursor queryResults = mDb.rawQuery ( "SELECT * FROM Schedule WHERE Building = " + building + " AND Room = " + room, null );
 
-                String[] columnNames = queryResults.getColumnNames ( );
-                Log.d ( LOGTAG, "Column Names : " + Arrays.toString ( columnNames ) );
+                    activeRows = new Rows ( queryResults ).getRows ( );
+
+                    String[] columnNames = queryResults.getColumnNames ( );
+                    Log.d ( LOGTAG, "Column Names : " + Arrays.toString ( columnNames ) );
+                }
 
                 if ( activeRows.size ( ) > 0 )
                 {
@@ -1351,100 +1411,9 @@ public class Schedules extends Activity implements SampleApplicationControl
                 mIsLoadingScheduleData = false;
 
                 productTextureIsCreated ( );
-            }
-        }
-    }
 
-    private class UpdateScheduleDataTask extends AsyncTask <Void, Void, Void>
-    {
-        protected void onPreExecute ( )
-        {
-            mIsLoadingScheduleData = true;
-
-            // Shows the loading dialog
-            loadingDialogHandler.sendEmptyMessage ( SHOW_LOADING_DIALOG );
-        }
-
-        @Override
-        protected Void doInBackground ( Void... voids )
-        {
-            try
-            {
-                mScheduleData = new Schedule ( );
-
-                if ( activeRows.size ( ) > 0 )
-                {
-                    mScheduleData.fillUsingRow ( activeRows.get ( activeRowsIndex ) );
-                }
-            }
-            catch ( Exception e )
-            {
-                Log.d ( LOGTAG, "Couldn't get schedule. e: " + e );
-            }
-
-            return null;
-        }
-
-        // TODO -> IGNORE
-        protected void onPostExecute ( Void result )
-        {
-            if ( mScheduleData != null )
-            {
-                // Generates a View to display the schedule data
-                ScheduleOverlayView productView = new ScheduleOverlayView ( Schedules.this );
-
-                // Updates the view used as a 3d Texture
-                updateProductView ( productView, mScheduleData );
-
-                // Sets the layout params
-                productView.setLayoutParams ( new ViewGroup.LayoutParams ( RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT ) );
-
-                // Sets View measure - This size should be the same as the
-                // texture generated to display the overlay in order for the
-                // texture to be centered in screen
-                productView.measure ( View.MeasureSpec.makeMeasureSpec ( mTextureSize, View.MeasureSpec.EXACTLY ), View.MeasureSpec.makeMeasureSpec ( mTextureSize, View.MeasureSpec.EXACTLY ) );
-
-                // updates layout size
-                productView.layout ( 0, 0, productView.getMeasuredWidth ( ), productView.getMeasuredHeight ( ) );
-
-                // Draws the View into a Bitmap. Note we are allocating several
-                // large memory buffers thus attempt to clear them as soon as
-                // they are no longer required:
-                Bitmap bitmap = Bitmap.createBitmap ( mTextureSize, mTextureSize, Bitmap.Config.ARGB_8888 );
-
-                Canvas c = new Canvas ( bitmap );
-                productView.draw ( c );
-
-                // Clear the product view as it is no longer needed
-                productView = null;
-                System.gc ( );
-
-                // Allocate int buffer for pixel conversion and copy pixels
-                int width = bitmap.getWidth ( );
-                int height = bitmap.getHeight ( );
-
-                int[] data = new int[bitmap.getWidth ( ) * bitmap.getHeight ( )];
-                bitmap.getPixels ( data, 0, bitmap.getWidth ( ), 0, 0, bitmap.getWidth ( ), bitmap.getHeight ( ) );
-
-                // Recycle the bitmap object as it is no longer needed
-                bitmap.recycle ( );
-                bitmap = null;
-                c = null;
-                System.gc ( );
-
-                // Generates the Texture from the int buffer
-                mScheduleDataTexture = Texture.loadTextureFromIntBuffer ( data, width, height );
-
-                // Clear the int buffer as it is no longer needed
-                data = null;
-                System.gc ( );
-
-                // Hides the loading dialog from a UI thread
-                loadingDialogHandler.sendEmptyMessage ( HIDE_LOADING_DIALOG );
-
-                mIsLoadingScheduleData = false;
-
-                productTextureIsCreated ( );
+                if ( shouldUpdateTexture )
+                    shouldUpdateTexture = false;
             }
         }
     }

@@ -15,10 +15,10 @@
         android:layout_marginRight="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:background="@color/transparent"
+        android:background="@color/abc_input_method_navigation_guard"
         android:contentDescription="Schedule Background Color"
         android:scaleType="fitXY"
-        android:src="@drawable/paper"
+        android:src="@drawable/paper_texture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Course"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/paperImageView"
@@ -43,11 +43,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Schedule"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toBottomOf="@+id/courseTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/courseHeaderTextView" />
 
     <TextView
         android:id="@+id/scheduleTextView"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/scheduleTitleTextView" />
 
     <TextView
-        android:id="@+id/courseTextView"
+        android:id="@+id/courseHeaderTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -86,14 +86,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Professor"
+        android:layout_marginTop="16dp"
+        android:text="Instructor"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/paperImageView"
         app:layout_constraintTop_toBottomOf="@+id/scheduleTextView" />
 
     <TextView
-        android:id="@+id/instructorTextView"
+        android:id="@+id/instructorHeaderTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Target"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/paperImageView"
@@ -137,9 +137,9 @@
         android:id="@+id/sealImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:scaleType="fitCenter"
         android:src="@drawable/cal_poly_university_seal"
         app:layout_constraintEnd_toEndOf="@+id/paperImageView"
