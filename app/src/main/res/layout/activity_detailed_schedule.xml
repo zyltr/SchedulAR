@@ -223,6 +223,30 @@
                 app:layout_constraintStart_toEndOf="@+id/officeRoomTitleTextView" />
 
             <TextView
+                android:id="@+id/officeHoursTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Office Hours"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/officeRoomTitleTextView"
+                app:layout_constraintTop_toBottomOf="@+id/officeRoomTextView" />
+
+            <TextView
+                android:id="@+id/officeHoursTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:text="Office Hours Go Here"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/officeHoursTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/officeHoursTitleTextView" />
+
+            <TextView
                 android:id="@+id/emailTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -230,7 +254,7 @@
                 android:text="Email"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/courseNumberTitleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/officeRoomTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/officeHoursTextView" />
 
             <TextView
                 android:id="@+id/emailTextView"
@@ -257,6 +281,7 @@
                 android:layout_marginTop="24dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 

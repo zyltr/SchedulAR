@@ -1,8 +1,6 @@
 # SchedulAR
 
-My Vuforia License and Server Keys are already included by default. The instructions below are optional.
-
-Instructions (Optional) :
+Instructions :
 
 1. Copy Project into Vufuria SDK "Samples" folder
 2. Generate Development Key from Vuforia's website and copy key to "SampleApplicationSession.java"
