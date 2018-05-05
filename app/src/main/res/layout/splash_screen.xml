@@ -18,7 +18,7 @@
 	]]>
 
 	<ImageView
-		android:id="@+id/splash_image"
+		android:id="@+id/splashBackgroundColor"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
 		android:background="@android:color/white"
@@ -27,24 +27,32 @@
 		android:visibility="visible"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.0" />
 
 	<ImageView
-		android:id="@+id/logo_image"
+		android:id="@+id/splashBillyImageView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="8dp"
-		android:layout_marginTop="8dp"
-		android:background="@drawable/icon"
-		android:contentDescription="@string/splash_screen_description"
-		android:scaleType="centerInside"
-		android:src="@drawable/icon"
-		android:visibility="visible"
-		app:layout_constraintBottom_toBottomOf="@+id/splash_image"
+		android:layout_marginBottom="300dp"
+		android:layout_marginTop="125dp"
+		android:src="@drawable/billy"
+		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.502"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/splash_image"
-		/>
+		app:layout_constraintTop_toTopOf="@+id/splashBackgroundColor" />
+
+	<ImageView
+		android:id="@+id/splashBroncoImageView"
+		android:layout_width="0dp"
+		android:layout_height="100dp"
+		android:layout_marginTop="8dp"
+		android:src="@drawable/broncos"
+		app:layout_constraintEnd_toEndOf="@+id/splashBillyImageView"
+		app:layout_constraintStart_toStartOf="@+id/splashBillyImageView"
+		app:layout_constraintTop_toBottomOf="@+id/splashBillyImageView" />
 
 </android.support.constraint.ConstraintLayout>

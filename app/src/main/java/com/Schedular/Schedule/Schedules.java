@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.constraint.ConstraintLayout;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -25,7 +24,6 @@ import android.view.MotionEvent;
 import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,7 +53,6 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class Schedules extends Activity implements SampleApplicationControl
 {
@@ -389,19 +386,19 @@ public class Schedules extends Activity implements SampleApplicationControl
         mUILayout.setBackgroundColor ( Color.BLACK );
 
         // By default
-        loadingDialogHandler.mLoadingDialogContainer = mUILayout.findViewById ( R.id.loading );
+        loadingDialogHandler.mLoadingDialogContainer = mUILayout.findViewById ( R.id.cameraLoadingBar );
         loadingDialogHandler.mLoadingDialogContainer.setVisibility ( View.VISIBLE );
 
         addContentView ( mUILayout, new ViewGroup.LayoutParams ( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT ) );
 
         // Gets a Reference to the Bottom Status Bar
-        mStatusBar = ( TextView ) mUILayout.findViewById ( R.id.overlay_status );
+        mStatusBar = ( TextView ) mUILayout.findViewById ( R.id.cameraStatusView );
 
         // Shows the loading indicator at start
         loadingDialogHandler.sendEmptyMessage ( LoadingDialogHandler.SHOW_LOADING_DIALOG );
 
         // Gets a reference to the Close Button
-        mCloseButton = ( ImageButton ) mUILayout.findViewById ( R.id.overlay_close_button );
+        mCloseButton = ( ImageButton ) mUILayout.findViewById ( R.id.cameraCloseButton );
 
         // Sets the Close Button functionality
         mCloseButton.setOnClickListener ( new View.OnClickListener ( )
@@ -432,7 +429,7 @@ public class Schedules extends Activity implements SampleApplicationControl
 
         final Activity activity = this;
 
-        mInformationButton = ( ImageButton ) findViewById ( R.id.informationImageButton );
+        mInformationButton = ( ImageButton ) findViewById ( R.id.cameraInformationButton );
         mInformationButton.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick ( View view )
@@ -489,7 +486,7 @@ public class Schedules extends Activity implements SampleApplicationControl
             }
         } );
 
-        mNextButton = ( ImageButton ) findViewById ( R.id.nextImageButton );
+        mNextButton = ( ImageButton ) findViewById ( R.id.cameraNextButton );
         mNextButton.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick ( View view )
@@ -505,7 +502,7 @@ public class Schedules extends Activity implements SampleApplicationControl
             }
         } );
 
-        mPreviousButton = ( ImageButton ) findViewById ( R.id.previousImageButton );
+        mPreviousButton = ( ImageButton ) findViewById ( R.id.cameraPreviousButton );
         mPreviousButton.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick ( View view )

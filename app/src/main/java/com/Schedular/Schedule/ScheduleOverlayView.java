@@ -44,25 +44,25 @@ public class ScheduleOverlayView extends RelativeLayout
     // TODO -> Our Custom View Methods for Uppdating Information
     public void setTarget ( String target )
     {
-        TextView targetTextView = (TextView) findViewById(R.id.targetTextView);
+        TextView targetTextView = (TextView) findViewById(R.id.scheduleBuildingTextView );
         targetTextView.setText(target);
     }
 
     public void setCourse ( String course )
     {
-        TextView courseTextView = (TextView) findViewById (R.id.courseHeaderTextView );
+        TextView courseTextView = (TextView) findViewById (R.id.scheduleCourseTextView );
         courseTextView.setText (course);
     }
 
     public void setSchedule( String schedule )
     {
-        TextView scheduleTextView = (TextView) findViewById (R.id.scheduleTextView);
+        TextView scheduleTextView = (TextView) findViewById (R.id.scheduleScheduleTextView );
         scheduleTextView.setText (schedule);
     }
 
     public void setProfessor ( String professor )
     {
-        TextView professorTextView = (TextView) findViewById (R.id.instructorHeaderTextView );
+        TextView professorTextView = (TextView) findViewById (R.id.scheduleInstructorTextView );
         professorTextView.setText (professor);
     }
 }

@@ -6,143 +6,157 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/paperImageView"
+        android:id="@+id/schedulePaperView"
         android:layout_width="0dp"
         android:layout_height="260dp"
-        android:layout_marginBottom="32dp"
         android:layout_marginEnd="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/abc_input_method_navigation_guard"
-        android:contentDescription="Schedule Background Color"
         android:scaleType="fitXY"
-        android:src="@drawable/paper_texture"
+        android:src="@drawable/paper"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/scheduleCPPImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:alpha=".15"
+        android:scaleType="fitCenter"
+        android:src="@drawable/cpp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/schedulePaperView"
+        app:layout_constraintEnd_toEndOf="@+id/schedulePaperView"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toTopOf="@+id/schedulePaperView" />
+
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/scheduleBuildingLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:text="Building"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toTopOf="@+id/schedulePaperView" />
+
+    <TextView
+        android:id="@+id/scheduleBuildingTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Building Goes Here"
+        android:textStyle="italic"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/schedulePaperView"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleBuildingLabel" />
+
+    <TextView
+        android:id="@+id/scheduleCourseLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
         android:text="Course"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toBottomOf="@+id/targetTextView" />
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleBuildingTextView" />
 
     <TextView
-        android:id="@+id/scheduleTitleTextView"
+        android:id="@+id/scheduleCourseTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Course Title Goes Here"
+        android:textStyle="italic"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/schedulePaperView"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleCourseLabel" />
+
+    <TextView
+        android:id="@+id/scheduleScheduleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:text="Schedule"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toBottomOf="@+id/courseHeaderTextView" />
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleCourseTextView" />
 
     <TextView
-        android:id="@+id/scheduleTextView"
+        android:id="@+id/scheduleScheduleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Our Scheduling Information Goes Here"
-        app:layout_constraintEnd_toEndOf="@+id/paperImageView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toBottomOf="@+id/scheduleTitleTextView" />
+        android:text="Scheduling Information Goes Here"
+        android:textStyle="italic"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/schedulePaperView"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleScheduleLabel" />
 
     <TextView
-        android:id="@+id/courseHeaderTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Our Course Title Goes Here"
-        app:layout_constraintEnd_toEndOf="@+id/paperImageView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
-
-    <TextView
-        android:id="@+id/instructorTitleTextView"
+        android:id="@+id/scheduleInstructorLabel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:text="Instructor"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toBottomOf="@+id/scheduleTextView" />
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleScheduleTextView" />
 
     <TextView
-        android:id="@+id/instructorHeaderTextView"
+        android:id="@+id/scheduleInstructorTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Our Professor Name Goes Here"
-        app:layout_constraintEnd_toEndOf="@+id/paperImageView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toBottomOf="@+id/instructorTitleTextView" />
-
-    <TextView
-        android:id="@+id/targetTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Target"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toTopOf="@+id/paperImageView" />
-
-    <TextView
-        android:id="@+id/targetTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="24dp"
         android:layout_marginRight="16dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Our Target Goes Here"
-        app:layout_constraintEnd_toStartOf="@+id/sealImageView"
-        app:layout_constraintStart_toStartOf="@+id/paperImageView"
-        app:layout_constraintTop_toBottomOf="@+id/targetTitleTextView" />
-
-    <ImageView
-        android:id="@+id/sealImageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/cal_poly_university_seal"
-        app:layout_constraintEnd_toEndOf="@+id/paperImageView"
-        app:layout_constraintTop_toTopOf="@+id/paperImageView" />
+        android:text="Professor Name Goes Here"
+        android:textStyle="italic"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/schedulePaperView"
+        app:layout_constraintEnd_toEndOf="@+id/schedulePaperView"
+        app:layout_constraintStart_toStartOf="@+id/schedulePaperView"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleInstructorLabel" />
 
 </android.support.constraint.ConstraintLayout>

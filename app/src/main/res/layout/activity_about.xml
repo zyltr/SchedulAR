@@ -16,6 +16,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/aboutSealImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        android:alpha="0.10"
+        android:src="@drawable/cppseal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/aboutScrollView"
         android:layout_width="0dp"
@@ -33,88 +50,91 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/titleTextView"
+                android:id="@+id/aboutTitleLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/about.title"
-                android:textSize="24sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/synopsisTextView"
+                android:id="@+id/aboutSynopsisLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/about.synopsis.title"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/aboutTitleLabel" />
 
             <TextView
-                android:id="@+id/synopsisDescriptionTextView"
+                android:id="@+id/aboutSynopsisTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/about.synopsis.description"
+                android:textSize="18sp"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/synopsisTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/aboutSynopsisLabel" />
 
             <TextView
-                android:id="@+id/creatorsTextView"
+                android:id="@+id/aboutCreatorsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/about.creators.title"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/synopsisDescriptionTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/aboutSynopsisTextView" />
 
             <TextView
-                android:id="@+id/creatorsDescriptionTextView"
+                android:id="@+id/aboutCreatorsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/about.creators.description"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                android:textSize="18sp"
+                android:textStyle="normal|italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/creatorsTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/aboutCreatorsLabel" />
 
             <Button
-                android:id="@+id/beginButton"
+                android:id="@+id/aboutBeginButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:onClick="startAugmentedReality"
                 android:text="@string/about.begin.title"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/creatorsDescriptionTextView"
+                app:layout_constraintTop_toBottomOf="@+id/aboutCreatorsTextView"
                 app:layout_constraintVertical_bias="1.0" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

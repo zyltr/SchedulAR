@@ -7,7 +7,7 @@
     tools:context=".Schedule.DetailedScheduleActivity">
 
     <ImageView
-        android:id="@+id/backgroundImageView"
+        android:id="@+id/detailedBackgroundColorView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@android:color/background_light"
@@ -18,8 +18,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <ImageView
+        android:id="@+id/detailedSealImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        android:alpha=".10"
+        android:src="@drawable/cppseal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/detailedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -33,116 +50,116 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/courseHeaderTextView"
+                android:id="@+id/detailedCourseLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:text="Department"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Course"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/courseNumberTitleTextView"
+                android:id="@+id/detailedCourseNumberLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="Course Number"
+                android:text="Number"
                 android:textSize="12sp"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/courseHeaderTextView" />
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/detailedCourseNumberTextView"
+                app:layout_constraintEnd_toEndOf="@+id/detailedOfficeBuildingLabel"
+                app:layout_constraintHorizontal_chainStyle="spread" />
 
             <TextView
-                android:id="@+id/courseNumberTextView"
+                android:id="@+id/detailedCourseNumberTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="16dp"
-                android:text="Our Course Number Here"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/courseNumberTitleTextView"
+                android:layout_marginTop="16dp"
+                android:text="Course Number Here"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/courseNumberTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/detailedCourseNumberLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailedCourseLabel" />
 
             <TextView
-                android:id="@+id/courseNameTitleTextView"
+                android:id="@+id/detailedCourseNameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Course Name"
+                android:text="Name"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/courseNumberTitleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/courseNumberTextView" />
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/detailedCourseNameTextView"
+                app:layout_constraintEnd_toEndOf="@+id/detailedOfficeBuildingLabel" />
 
             <TextView
-                android:id="@+id/courseNameTextView"
+                android:id="@+id/detailedCourseNameTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="16dp"
-                android:text="Our Course Name Here"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/courseNameTitleTextView"
+                android:layout_marginTop="16dp"
+                android:text="Course Name Here"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/courseNameTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/detailedCourseNameLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailedCourseNumberTextView" />
 
             <TextView
-                android:id="@+id/courseDescriptionTitleTextView"
+                android:id="@+id/detailedDescriptionLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Description"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/courseNameTitleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/courseNameTextView" />
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/detailedCourseDescriptionTextView"
+                app:layout_constraintEnd_toEndOf="@+id/detailedInstructorLabel" />
 
             <TextView
-                android:id="@+id/courseDescriptionTextView"
+                android:id="@+id/detailedCourseDescriptionTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="16dp"
-                android:text="Our Course Description Goes Here"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/courseDescriptionTitleTextView"
+                android:layout_marginTop="16dp"
+                android:text="Course Description Goes Here"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/courseDescriptionTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/detailedDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailedCourseNameTextView" />
 
             <View
                 android:id="@+id/departmentDivider"
                 android:layout_width="0dp"
                 android:layout_height="5dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintBottom_toTopOf="@+id/instructorHeaderTextView"
+                app:layout_constraintBottom_toTopOf="@+id/detailedInstructorTitleLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/courseDescriptionTitleTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/detailedDescriptionLabel" />
 
             <TextView
-                android:id="@+id/instructorHeaderTextView"
+                android:id="@+id/detailedInstructorTitleLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="Instructor"
                 android:textSize="24sp"
@@ -151,133 +168,140 @@
                 app:layout_constraintTop_toBottomOf="@+id/departmentDivider" />
 
             <TextView
-                android:id="@+id/instructorTitleTextView"
+                android:id="@+id/detailedInstructorLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Instructor"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/courseNameTitleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/instructorHeaderTextView" />
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/detailedInstructorTextView"
+                app:layout_constraintEnd_toEndOf="@+id/detailedOfficeBuildingLabel" />
 
             <TextView
-                android:id="@+id/officeBuildingTitleTextView"
+                android:id="@+id/detailedOfficeBuildingLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:text="Office Building"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/courseNameTitleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/instructorTextView" />
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/detailedOfficeBuildingTextView"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/officeRoomTitleTextView"
+                android:id="@+id/detailedOfficeRoomLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Office Room"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/courseNumberTitleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/officeBuildingTextView" />
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/detailedOfficeRoomTextView"
+                app:layout_constraintEnd_toEndOf="@+id/detailedOfficeBuildingLabel" />
 
             <TextView
-                android:id="@+id/instructorTextView"
+                android:id="@+id/detailedInstructorTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="16dp"
-                android:text="Our Instructor Goes Here"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/instructorTitleTextView"
+                android:layout_marginTop="16dp"
+                android:text="Instructor Goes Here"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/instructorTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/detailedInstructorLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailedInstructorTitleLabel" />
 
             <TextView
-                android:id="@+id/officeBuildingTextView"
+                android:id="@+id/detailedOfficeBuildingTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="16dp"
-                android:text="Our Office Building Goes Here"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/officeBuildingTitleTextView"
+                android:layout_marginTop="16dp"
+                android:text="Office Building Goes Here"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/officeBuildingTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/detailedOfficeBuildingLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailedInstructorTextView" />
 
             <TextView
-                android:id="@+id/officeRoomTextView"
+                android:id="@+id/detailedOfficeRoomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="16dp"
-                android:text="Our Office Room Goes Here"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/officeRoomTitleTextView"
+                android:layout_marginTop="16dp"
+                android:text="Office Room Goes Here"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/officeRoomTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/detailedOfficeRoomLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailedOfficeBuildingTextView" />
 
             <TextView
-                android:id="@+id/officeHoursTitleTextView"
+                android:id="@+id/detailedOfficeHoursLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Office Hours"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/officeRoomTitleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/officeRoomTextView" />
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/detailedOfficeHoursTextView"
+                app:layout_constraintEnd_toEndOf="@+id/detailedOfficeBuildingLabel" />
 
             <TextView
-                android:id="@+id/officeHoursTextView"
+                android:id="@+id/detailedOfficeHoursTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="Office Hours Go Here"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/officeHoursTitleTextView"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/officeHoursTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/detailedOfficeHoursLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailedOfficeRoomTextView" />
 
             <TextView
-                android:id="@+id/emailTitleTextView"
+                android:id="@+id/detailedEmailLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Email"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/courseNumberTitleTextView"
-                app:layout_constraintTop_toBottomOf="@+id/officeHoursTextView" />
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/emailTextView"
+                app:layout_constraintEnd_toEndOf="@+id/detailedOfficeBuildingLabel" />
 
             <TextView
                 android:id="@+id/emailTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="16dp"
-                android:text="Our Email Goes Here"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/emailTitleTextView"
+                android:layout_marginTop="16dp"
+                android:text="Email Goes Here"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/emailTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/detailedEmailLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailedOfficeHoursTextView" />
 
             <View
                 android:id="@+id/instructorDivider"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -286,14 +310,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 
             <Button
-                android:id="@+id/doneButton"
+                android:id="@+id/detailedDoneButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:text="Done!"
                 android:textSize="14sp"

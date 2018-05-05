@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.Schedular.R;
 import com.Schedular.Schedule.Schedules;
-import com.Schedular.ScheduleTargets.ScheduleTargets;
 
 
 public class AboutActivity extends Activity {
@@ -20,12 +19,8 @@ public class AboutActivity extends Activity {
 
     public void startAugmentedReality (View view)
     {
-        // Starts ScheduleTargets
-//        Intent intent = new Intent( this, ScheduleTargets.class);
-
         // Starts Schedules
         Intent intent = new Intent( this, Schedules.class );
-
         startActivity(intent);
     }
 

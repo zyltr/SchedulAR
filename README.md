@@ -1,6 +1,6 @@
 # SchedulAR
 
-Instructions :
+Instructions ( Required if you wan to use your own Vuforia Targets Cloud Database ):
 
 1. Copy Project into Vufuria SDK "Samples" folder
 2. Generate Development Key from Vuforia's website and copy key to "SampleApplicationSession.java"

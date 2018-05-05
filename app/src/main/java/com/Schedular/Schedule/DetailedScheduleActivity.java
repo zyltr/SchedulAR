@@ -65,9 +65,9 @@ public class DetailedScheduleActivity extends Activity
             }
         }
 
-        ( ( TextView ) findViewById ( R.id.courseNumberTextView ) ).setText ( courseNumber );
-        ( ( TextView ) findViewById ( R.id.courseNameTextView ) ).setText ( courseName );
-        ( ( TextView ) findViewById ( R.id.courseDescriptionTextView ) ).setText ( courseDescription );
+        ( ( TextView ) findViewById ( R.id.detailedCourseNumberTextView ) ).setText ( courseNumber );
+        ( ( TextView ) findViewById ( R.id.detailedCourseNameTextView ) ).setText ( courseName );
+        ( ( TextView ) findViewById ( R.id.detailedCourseDescriptionTextView ) ).setText ( courseDescription );
 
         String instructor = "";
         String officeBuilding = "";
@@ -98,8 +98,8 @@ public class DetailedScheduleActivity extends Activity
             }
         }
 
-        ( ( TextView ) findViewById ( R.id.instructorTextView ) ).setText ( instructor );
-        ( ( TextView ) findViewById ( R.id.officeBuildingTextView ) ).setText ( officeBuilding );
-        ( ( TextView ) findViewById ( R.id.officeRoomTextView ) ).setText ( officeRoom );
+        ( ( TextView ) findViewById ( R.id.detailedInstructorTextView ) ).setText ( instructor );
+        ( ( TextView ) findViewById ( R.id.detailedOfficeBuildingTextView ) ).setText ( officeBuilding );
+        ( ( TextView ) findViewById ( R.id.detailedOfficeRoomTextView ) ).setText ( officeRoom );
     }
 }

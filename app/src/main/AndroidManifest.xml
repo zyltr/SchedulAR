@@ -107,7 +107,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
             android:launchMode="singleTask"
             android:theme="@style/SampleAppsTheme" />
-        <activity android:name=".Schedule.DetailedScheduleActivity"></activity>
+        <activity android:name=".Schedule.DetailedScheduleActivity" />
+        <activity android:name=".DetailedScheduleActivity"></activity>
     </application>
 
 </manifest>
