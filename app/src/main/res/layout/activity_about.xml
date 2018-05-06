@@ -43,7 +43,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -105,18 +105,171 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/aboutSynopsisTextView" />
 
-            <TextView
-                android:id="@+id/aboutCreatorsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <View
+                android:id="@+id/aboutFirstDivider"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/about.creators.description"
-                android:textSize="18sp"
-                android:textStyle="normal|italic"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/aboutCreatorsLabel" />
+
+            <ImageView
+                android:id="@+id/aboutFirstImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/lion"
+                app:layout_constraintStart_toStartOf="@+id/aboutFirstDivider"
+                app:layout_constraintTop_toBottomOf="@+id/aboutFirstDivider" />
+
+            <TextView
+                android:id="@+id/aboutFirstCreatorTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Jason Chan Zhang"
+                android:textSize="18sp"
+                android:textStyle="normal|bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/aboutFirstImageView"
+                app:layout_constraintEnd_toEndOf="@+id/aboutFirstDivider"
+                app:layout_constraintStart_toEndOf="@+id/aboutFirstImageView"
+                app:layout_constraintTop_toTopOf="@+id/aboutFirstImageView" />
+
+            <View
+                android:id="@+id/aboutSecondDivider"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aboutFirstImageView" />
+
+            <ImageView
+                android:id="@+id/aboutSecondImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/tiger"
+                app:layout_constraintStart_toStartOf="@+id/aboutFirstDivider"
+                app:layout_constraintTop_toBottomOf="@+id/aboutSecondDivider" />
+
+            <TextView
+                android:id="@+id/aboutSecondCreatorTextView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Joshua Iwikari"
+                android:textSize="18sp"
+                android:textStyle="normal|bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/aboutSecondImageView"
+                app:layout_constraintEnd_toEndOf="@+id/aboutSecondDivider"
+                app:layout_constraintStart_toEndOf="@+id/aboutSecondImageView"
+                app:layout_constraintTop_toTopOf="@+id/aboutSecondImageView" />
+
+            <View
+                android:id="@+id/aboutThirdDivider"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aboutSecondImageView" />
+
+            <ImageView
+                android:id="@+id/aboutThirdImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/jaguar"
+                app:layout_constraintStart_toStartOf="@+id/aboutFirstDivider"
+                app:layout_constraintTop_toBottomOf="@+id/aboutThirdDivider" />
+
+            <TextView
+                android:id="@+id/aboutThirdCreatorTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Jamie Lopez"
+                android:textSize="18sp"
+                android:textStyle="normal|bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/aboutThirdImageView"
+                app:layout_constraintEnd_toEndOf="@+id/aboutThirdDivider"
+                app:layout_constraintStart_toEndOf="@+id/aboutThirdImageView"
+                app:layout_constraintTop_toTopOf="@+id/aboutThirdImageView" />
+
+            <View
+                android:id="@+id/aboutFourthDivider"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aboutThirdImageView" />
+
+            <ImageView
+                android:id="@+id/aboutFourthmageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/snowleopard"
+                app:layout_constraintStart_toStartOf="@+id/aboutFirstDivider"
+                app:layout_constraintTop_toBottomOf="@+id/aboutFourthDivider" />
+
+            <TextView
+                android:id="@+id/aboutFourthCreatorTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Erik Huerta"
+                android:textSize="18sp"
+                android:textStyle="normal|bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/aboutFourthmageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/aboutFourthmageView"
+                app:layout_constraintTop_toTopOf="@+id/aboutFourthmageView" />
+
+            <View
+                android:id="@+id/aboutClosingDivider"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aboutFourthmageView" />
 
             <Button
                 android:id="@+id/aboutBeginButton"
@@ -134,8 +287,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/aboutCreatorsTextView"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/aboutClosingDivider" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
